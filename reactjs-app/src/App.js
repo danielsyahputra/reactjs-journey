@@ -17,13 +17,13 @@ const App = props => {
   // Di functional component, ketika kita memutasi component maka semua states nya akan di override
   console.log(personsState, otherState);
 
-  const switchNameHandler = () => {
+  const switchNameHandler = (newName) => {
     // console.log('Was clicked!');
     // Don't do this
     //this.state.persons[0] = 'Daniel Syahputra';
     setPersonsState({
       persons: [
-        { name: "Daniel Syahputra", age: 19 },
+        { name: newName, age: 19 },
         { name: "Harry", age: 20 },
         { name: "Hermione", age: 19 },
       ],
@@ -34,10 +34,11 @@ const App = props => {
     <div className="App">
       <h1>Hi, I'm a React App!</h1>
       <p>This is really working!</p>
-      <button onClick={switchNameHandler}>Swith Name</button>
+      <button onClick={switchNameHandler.bind(this, 'Daniel Syahputra')}>Swith Name</button>
       <Person
         name={personsState.persons[0].name}
         age={personsState.persons[0].age}
+        click = {switchNameHandler}
       />
       <Person
         name={personsState.persons[1].name}
