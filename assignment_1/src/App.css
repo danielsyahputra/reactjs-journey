@@ -3,7 +3,8 @@
   width: 70%;
   margin: 10px auto;
   border: 1px solid #837b7b;
-  height: 95vh;
+  height: 100%;
+  box-shadow: 0 2px 3px #353434;
 }
 
 h1 {

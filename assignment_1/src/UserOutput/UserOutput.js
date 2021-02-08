@@ -5,6 +5,7 @@ const userOutput = (props) => {
     return (
         <div className="UserOutput">
             <p>{ props.activity }</p>
+            <p>Level of Priority: { props.priority }</p>
         </div>
     );
 };
