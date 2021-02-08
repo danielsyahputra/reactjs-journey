@@ -1,3 +1,11 @@
 .App {
   text-align: center;
+  width: 70%;
+  margin: 10px auto;
+  border: 1px solid #837b7b;
+  height: 95vh;
+}
+
+h1 {
+  color: blue;
 }

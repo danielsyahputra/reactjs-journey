@@ -17,10 +17,11 @@ Add styling of your choice to your components/ elements in the components - both
  */
 
 import React from "react"
+import "./UserInput.css";
 
 const userInput = () => {
     return (
-        <div>
+        <div className="UserInput">
             <label for="input">Enter an Input: </label>
             <input name="input" type="text"/>
         </div>
