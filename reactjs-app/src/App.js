@@ -10,59 +10,58 @@ class App extends Component {
       { name: "Hermione", age: 19 },
     ],
     otherState: "some other value",
-    showPersons: false
-  };
-
-  switchNameHandler = (newName) => {
-    // console.log('Was clicked!');
-    // DON'T DO THIS: this.state.persons[0].name = 'Maximilian';
-    this.setState({
-      persons: [
-        { name: newName, age: 19 },
-        { name: "Harry", age: 20 },
-        { name: "Hermione", age: 20 },
-      ],
-    });
+    showPersons: false,
   };
 
   nameChangedHandler = (event) => {
     this.setState({
       persons: [
-        { name: 'Daniel', age: 19 },
+        { name: "Daniel", age: 19 },
         { name: event.target.value, age: 20 },
         { name: "Hermione", age: 20 },
       ],
     });
-  }
+  };
+
+  deletePersonHandler = (personIndex) => {
+    const persons = this.state.persons;
+    persons.splice(personIndex, 1);
+    this.setState({ persons: persons });
+  };
 
   togglePersonsHandler = () => {
     this.setState({
-      showPersons: !(this.state.showPersons)
-    })
-  }
+      showPersons: !this.state.showPersons,
+    });
+  };
 
   render() {
     const style = {
-      backgroundColor: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    }
+      backgroundColor: "white",
+      font: "inherit",
+      border: "1px solid blue",
+      padding: "8px",
+      cursor: "pointer",
+    };
 
     let persons = null;
 
     if (this.state.showPersons) {
       persons = (
         <div>
-          {this.state.persons.map(person => {
-            return <Person name={person.name} age={person.age} />
+          {this.state.persons.map((person, index) => {
+            return (
+              <Person
+                click={() => this.deletePersonHandler(index)}
+                name={person.name}
+                age={person.age}
+              />
+            );
           })}
         </div>
       );
     }
 
-    
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
