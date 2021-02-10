@@ -1,0 +1,11 @@
+import React from "react";
+
+const validationComponent = () => {
+    return (
+        <div className="CharComponent">
+            <h1>Char CharComponent</h1>
+        </div>
+    )
+}
+
+export default charComponent;
