@@ -41,7 +41,8 @@ class App extends Component {
       chars = this.state.inputString.map((char, index) => {
         return <CharComponent
           char={char}
-          click={() => this.deleteChar(index)} />;
+          click={() => this.deleteChar(index)}
+          key={index} />;
       });
     } else {
       chars = "There's no text here!"
