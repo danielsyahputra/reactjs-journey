@@ -4,27 +4,34 @@ import ValidationComponent from "./ValidationComponent/ValidationComponent";
 import CharComponent from "./CharComponent/CharComponent"
 
 class App extends Component {
-
   state = {
     inputString: "".split(),
     lengthText: 0,
-    isTooShort: true
-  }
+    isTooShort: true,
+    textShow: false,
+  };
 
   inputChangeHandler = (event) => {
     const text = event.target.value;
+    const length = text.length;
     this.setState({
-      inputString: text.split(''),
-      lengthText: text.length,
-      isTooShort: (text.length <= 5)
-    })
-  }
+      inputString: text.split(""),
+      lengthText: length,
+      isTooShort: length <= 5,
+      textShow: length !== 0
+    });
+  };
 
   render() {
+    let chars = null;
 
-    const chars = this.state.inputString.map((char) => {
-      return <CharComponent char={char} />;
-    });
+    if (this.state.textShow) {
+      chars = this.state.inputString.map((char) => {
+        return <CharComponent char={char} />;
+      });
+    } else {
+      chars = "There's no text here!"
+    }
 
     return (
       <div className="App">
@@ -33,10 +40,11 @@ class App extends Component {
         <ValidationComponent
           input={this.state.inputString}
           length={this.state.lengthText}
-          isTooShort={ this.state.isTooShort } />
+          isTooShort={this.state.isTooShort}
+        />
         {chars}
       </div>
-    )
+    );
   }
 }
 
