@@ -22,12 +22,26 @@ class App extends Component {
     });
   };
 
+  deleteChar = (indexChar) => {
+    const chars = [...this.state.inputString];
+    chars.splice(indexChar, 1);
+    const length = chars.length;
+    this.setState({
+      inputString: chars,
+      lengthText: length,
+      isTooShort: length <= 5,
+      textShow: length !== 0
+    })
+  }
+
   render() {
     let chars = null;
 
     if (this.state.textShow) {
-      chars = this.state.inputString.map((char) => {
-        return <CharComponent char={char} />;
+      chars = this.state.inputString.map((char, index) => {
+        return <CharComponent
+          char={char}
+          click={() => this.deleteChar(index)} />;
       });
     } else {
       chars = "There's no text here!"
