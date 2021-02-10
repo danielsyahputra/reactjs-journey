@@ -1,9 +1,11 @@
 import React from "react";
 
-const validationComponent = () => {
+const validationComponent = (props) => {
   return (
     <div className="ValidationComponent">
-      <h2>Validation Component</h2>
+      <p>Input anda : {props.input.join('')}</p>
+      <p>Panjang input yang anda masukkan : {props.length}</p>
+      <p>{ (props.isTooShort) ? "Text too short!" : "Text long enough" }</p>
     </div>
   );
 };
