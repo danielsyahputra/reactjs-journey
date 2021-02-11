@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Person from "./Person/Person";
+import Radium from "radium";
 
 class App extends Component {
   state = {
@@ -39,6 +40,8 @@ class App extends Component {
   };
 
   render() {
+
+    // With inline styles we can't assign our component with pseudo-selector and media quiries. 
     const style = {
       backgroundColor: "green",
       color: "white",
@@ -46,7 +49,13 @@ class App extends Component {
       border: "1px solid blue",
       padding: "8px",
       cursor: "pointer",
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      },
     };
+
+    // All pseudo-selector have to wrapped in quotation marks
 
     let persons = null;
 
@@ -67,6 +76,10 @@ class App extends Component {
         </div>
       );
       style.backgroundColor = "red";
+      style[':hover'] = {
+        backgroundColor: 'salmon',
+        color: 'black'
+      };
     }
 
     const classes = [];
@@ -91,4 +104,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Radium(App);
