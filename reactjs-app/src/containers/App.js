@@ -4,18 +4,32 @@ import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log("[App.js] constructor");
+  }
+
   state = {
     persons: [
-      { id: "abcd1",  name: "Daniel", age: 19 },
-      { id: "asdf2",  name: "Harry", age: 20 },
-      { id: "qwer3",  name: "Hermione", age: 19 },
+      { id: "abcd1", name: "Daniel", age: 19 },
+      { id: "asdf2", name: "Harry", age: 20 },
+      { id: "qwer3", name: "Hermione", age: 19 },
     ],
     otherState: "some other value",
     showPersons: false,
-  }; 
+  };
+
+  static getDerivedStateFromProps = (props, state) => {
+    console.log("[App.js] getDerivedStateFromProps", props);
+    return state;
+  };
+
+  componentDidMount = () => {
+    console.log("[App.js] componentDidMount");
+  };
 
   nameChangedHandler = (event, id) => {
-    const personIndex = this.state.persons.findIndex(p => {
+    const personIndex = this.state.persons.findIndex((p) => {
       return p.id === id;
     });
     const person = { ...this.state.persons[personIndex] };
@@ -23,7 +37,7 @@ class App extends Component {
     const persons = [...this.state.persons];
     persons[personIndex] = person;
     this.setState({
-      persons: persons
+      persons: persons,
     });
   };
 
@@ -40,10 +54,7 @@ class App extends Component {
   };
 
   render() {
-
-    // With inline styles we can't assign our component with pseudo-selector and media quiries. 
-    // All pseudo-selector have to wrapped in quotation marks
-
+    console.log("[App.js] render");
     let persons = null;
     if (this.state.showPersons) {
       persons = (
@@ -55,18 +66,17 @@ class App extends Component {
       );
     }
 
-    // Don't forget to wrap our application with StyleRoot component provided by Radium
     return (
       <div className={classes.App}>
         <Cockpit
           title={this.props.appTitle}
           clicked={this.togglePersonsHandler}
           showPersons={this.state.showPersons}
-          persons={ this.state.persons } />
+          persons={this.state.persons}
+        />
         {persons}
       </div>
     );
-    // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
   }
 }
 
