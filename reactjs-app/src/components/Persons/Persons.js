@@ -1,11 +1,14 @@
-import React, {Component} from "react";
+import React, {PureComponent} from "react";
 import Person from "./Person/Person";
 
-class Persons extends Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log('[Persons.js] shouldComponentUpdate');
-    return true;
-  }
+class Persons extends PureComponent {
+
+  // We shouldn't use shouldComponentUpdate if we are checking all properties. 
+  //We can choose an alternative way which is replace our extended component to PureComponent
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log('[Persons.js] shouldComponentUpdate');
+  //   return nextProps.persons !== this.props.persons || nextProps.clicked !== this.props.clicked || nextProps.changed !== this.props.changed;
+  // }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
     console.log('[Person.js] getSnapshotBeforeUpdate');
